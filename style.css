@@ -1,0 +1,28 @@
+html,
+body {
+  height: 100vh;
+  background-color: rgba(8, 8, 8, 255);
+  padding: 0;
+  margin: 0;
+}
+main {
+  height: 100vh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+.filter {
+  filter: invert(1);
+}
+img {
+  width: 70%;
+}
+div {
+  display: flex;
+  justify-content: center;
+}
+
+.filterOpacity {
+  opacity: 5%;
+  transition-duration: 10s;
+}
