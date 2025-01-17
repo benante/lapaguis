@@ -18,14 +18,13 @@ window.addEventListener('load', () => {
       introDrums.play();
     });
     introDrums.addEventListener('ended', () => {
-      console.log('done');
       setTimeout(() => {
-        body.classList.remove('filterOpacity');
         mainDrums.play();
+        body.classList.remove('filterOpacity');
         toggleFilter(210, 30);
-      }, 1000);
+      }, 500);
     });
-  }, 9000);
+  }, 7000);
   //   document.addEventListener('click', blockInteractions, false);
 });
 
