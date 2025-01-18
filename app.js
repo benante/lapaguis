@@ -8,41 +8,36 @@ console.log(introDrums);
 window.addEventListener('load', () => {
   //  prevent user to click on anything
   document.body.style.pointerEvents = 'none';
-
   // start opacity animation
   body.classList.add('filterOpacity');
+
+  // after animation, 7 secs, allow user to click, which will trigger first intro sound
   setTimeout(() => {
     document.body.style.pointerEvents = 'auto';
     console.log('Unblocked');
     document.addEventListener('click', () => {
       introDrums.play();
     });
+
+    //  once intro ends, start another sound with a flashing animation
     introDrums.addEventListener('ended', () => {
       setTimeout(() => {
         mainDrums.play();
         body.classList.remove('filterOpacity');
-        toggleFilter(210, 30);
+        flashFilter(210);
       }, 500);
     });
   }, 7000);
-  //   document.addEventListener('click', blockInteractions, false);
 });
 
-function toggleFilter(times, interval) {
-  let count = 0;
-
-  function toggleFilter() {
-    if (count >= times) return; // Stop after the desired number of alternations
-
-    if (count % 2 === 0) {
-      body.classList.add('filter');
-    } else {
-      body.classList.remove('filter');
-    }
-
-    count++;
-    setTimeout(toggleFilter, interval); // Schedule the next toggle
+//  recursive function
+const flashFilter = (count) => {
+  if (count <= 0) return;
+  if (count % 2 === 0) {
+    body.classList.add('filter');
+  } else {
+    body.classList.remove('filter');
   }
-
-  toggleFilter(); // Start the toggling process
-}
+  count--;
+  return setTimeout(() => flashFilter(count), 30);
+};
